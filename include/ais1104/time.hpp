@@ -13,9 +13,8 @@
  */
 class Time {
 private:
-    static long long totalMiliseconds; /**< The total number of milliseconds elapsed. */
-    static bool isInitialized; /**< Flag indicating whether the Time class has been initialized. */
-    static long long deltaTime; /**< The time difference between updates. */
+    long long totalMiliseconds; /**< The total number of milliseconds elapsed. */
+    long long deltaTime; /**< The time difference between updates. */
 public:
     /**
      * @brief Constructs a Time object with the specified time difference between updates.
@@ -25,11 +24,8 @@ public:
      * and isInitialized variables are initialized.
      */
     Time(long long deltaTime) {
-        if (!isInitialized) {
-            deltaTime = deltaTime;
-            totalMiliseconds = 0;
-            isInitialized = true;
-        }
+        this->deltaTime = deltaTime;
+        this->totalMiliseconds = 0;
     }
 
     /**
