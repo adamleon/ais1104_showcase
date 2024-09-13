@@ -1,7 +1,6 @@
 #ifndef TIME_HPP
 #define TIME_HPP
 
-#include <iostream>
 #include <string>
 
 /**
@@ -13,7 +12,7 @@
  */
 class Time {
 private:
-    long long totalMiliseconds; /**< The total number of milliseconds elapsed. */
+    long long totalMilliseconds; /**< The total number of milliseconds elapsed. */
     long long deltaTime; /**< The time difference between updates. */
 public:
     /**
@@ -25,7 +24,7 @@ public:
      */
     Time(long long deltaTime) {
         this->deltaTime = deltaTime;
-        this->totalMiliseconds = 0;
+        this->totalMilliseconds = 0;
     }
 
     /**
@@ -35,15 +34,15 @@ public:
      * It adds the deltaTime value to the totalMiliseconds variable.
      */
     void update() {
-        totalMiliseconds += deltaTime;
+        totalMilliseconds += deltaTime;
     }
 
     /**
      * @brief Gets the total number of milliseconds elapsed.
      * @return The total number of milliseconds elapsed.
      */
-    long long getMiliseconds() {
-        return totalMiliseconds;
+    long long getMilliseconds() {
+        return totalMilliseconds;
     }
 
     /**
@@ -51,7 +50,7 @@ public:
      * @return The total number of seconds elapsed.
      */
     long long getSeconds() {
-        return totalMiliseconds / 1000;
+        return totalMilliseconds / 1000;
     }
 
     /**
@@ -59,7 +58,7 @@ public:
      * @return The total number of minutes elapsed.
      */
     long long getMinutes() {
-        return totalMiliseconds / 60000;
+        return totalMilliseconds / 60000;
     }
 
     /**
@@ -67,14 +66,14 @@ public:
      * @return The total number of hours elapsed.
      */
     long long getHours() {
-        return totalMiliseconds / 3600000;
+        return totalMilliseconds / 3600000;
     }
 
     /**
      * @brief Converts the time measurement into a string representation.
      * @return The string representation of the time measurement.
      *
-     * The string representation is in the format "hh h mm m ss s ms ms", where hh represents hours,
+     * The string representation is in the format "hh h mm m ss s ms", where hh represents hours,
      * mm represents minutes, ss represents seconds, and ms represents milliseconds.
      */
     std::string toString() {
@@ -82,7 +81,7 @@ public:
         result += std::to_string(getHours()) + "h ";
         result += std::to_string(getMinutes() % 60) + "m ";
         result += std::to_string(getSeconds() % 60) + "s ";
-        result += std::to_string(getMiliseconds() % 1000) + "ms";
+        result += std::to_string(getMilliseconds() % 1000) + "ms";
         return result;
     }
 };
