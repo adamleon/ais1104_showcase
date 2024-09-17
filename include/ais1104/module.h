@@ -23,6 +23,8 @@ public:
         if(!isInitialized) throw std::runtime_error(this->name + " is not initialized");
     };
 
+   double getDeltaTime() {return time.getDeltaTime();}
+
 private:
     bool isInitialized = false;
     std::string name;

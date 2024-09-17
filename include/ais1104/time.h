@@ -2,6 +2,7 @@
 #define TIME_HPP
 
 #include <string>
+#include <cmath>
 
 /**
  * @class Time
@@ -12,8 +13,8 @@
  */
 class Time {
 private:
-    long long totalMilliseconds; /**< The total number of milliseconds elapsed. */
-    long long deltaTime; /**< The time difference between updates. */
+    double totalSeconds; /**< The total number of milliseconds elapsed. */
+    double deltaTime; /**< The time difference between updates. */
 public:
     /**
      * @brief Constructs a Time object with the specified time difference between updates.
@@ -22,9 +23,9 @@ public:
      * If the Time class has not been initialized, the deltaTime value is set and the totalMiliseconds
      * and isInitialized variables are initialized.
      */
-    Time(long long deltaTime) {
+    Time(double deltaTime) {
         this->deltaTime = deltaTime;
-        this->totalMilliseconds = 0;
+        this->totalSeconds = 0;
     }
 
     /**
@@ -34,39 +35,42 @@ public:
      * It adds the deltaTime value to the totalMiliseconds variable.
      */
     void update() {
-        totalMilliseconds += deltaTime;
+        totalSeconds += deltaTime;
     }
 
     /**
      * @brief Gets the total number of milliseconds elapsed.
      * @return The total number of milliseconds elapsed.
      */
-    long long getMilliseconds() {
-        return totalMilliseconds;
+    double getMilliseconds() {
+        return totalSeconds / 1000;
     }
 
     /**
      * @brief Gets the total number of seconds elapsed.
      * @return The total number of seconds elapsed.
      */
-    long long getSeconds() {
-        return totalMilliseconds / 1000;
+    double getSeconds() {
+        return totalSeconds; // number of seconds elapsed.
     }
-
     /**
      * @brief Gets the total number of minutes elapsed.
      * @return The total number of minutes elapsed.
      */
-    long long getMinutes() {
-        return totalMilliseconds / 60000;
+    double getMinutes() {
+        return totalSeconds / 60;
     }
 
     /**
      * @brief Gets the total number of hours elapsed.
      * @return The total number of hours elapsed.
      */
-    long long getHours() {
-        return totalMilliseconds / 3600000;
+    double getHours() {
+        return totalSeconds / 3600;
+    }
+
+    double getDeltaTime() {
+      return deltaTime;
     }
 
     /**
@@ -79,9 +83,9 @@ public:
     std::string toString() {
         std::string result = "";
         result += std::to_string(getHours()) + "h ";
-        result += std::to_string(getMinutes() % 60) + "m ";
-        result += std::to_string(getSeconds() % 60) + "s ";
-        result += std::to_string(getMilliseconds() % 1000) + "ms";
+        result += std::to_string(std::fmod(getMinutes(), 60)) + "m ";
+        result += std::to_string(std::fmod(getSeconds(), 60)) + "s ";
+        result += std::to_string(std::fmod(getMilliseconds(),1000)) + "ms";
         return result;
     }
 };
