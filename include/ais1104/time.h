@@ -16,6 +16,9 @@ private:
     double totalSeconds; /**< The total number of milliseconds elapsed. */
     double deltaTime; /**< The time difference between updates. */
 public:
+    static void Init(double deltaTime);
+
+    static Time Instance();
     /**
      * @brief Constructs a Time object with the specified time difference between updates.
      * @param deltaTime The time difference between updates in milliseconds.
@@ -89,5 +92,6 @@ public:
         return result;
     }
 };
+
 
 #endif // TIME_HPP

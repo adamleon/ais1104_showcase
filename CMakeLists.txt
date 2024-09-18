@@ -5,7 +5,10 @@ project(ais1104_showcase)
 set(SOURCES
     src/main.cpp
     src/motor.cpp
-    # src/module.cpp
+        src/wheel.cpp
+        include/ais1104/wheel.h
+        src/time.cpp
+        # src/module.cpp
 )
 
 # Add your executable target

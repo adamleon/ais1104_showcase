@@ -13,7 +13,7 @@ class Module {
 public:
     virtual ~Module() = default;
 
-    Module(Time time, std::string name): time(time), name(std::move(name)) {}
+    explicit Module(std::string name): time(Time::Instance()), name(std::move(name)) {}
 
     virtual  void init() {
         if(!isInitialized) isInitialized = true;
@@ -27,8 +27,8 @@ public:
 
 private:
     bool isInitialized = false;
-    std::string name;
     Time time;
+    std::string name;
 };
 
 #endif //MODULE_H
