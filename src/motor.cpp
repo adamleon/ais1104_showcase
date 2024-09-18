@@ -17,3 +17,9 @@ void Motor::update() {
     angular_velocity += domega_dt;
     angle += angular_velocity;
 }
+
+void Motor::attach(Wheel* wheel) {
+    if(!wheel) { return; }
+    inertia = wheel->getInertia();
+    wheel->setMotor(this);
+}

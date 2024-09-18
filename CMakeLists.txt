@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 project(ais1104_showcase)
 
+SET(CMAKE_CXX_STANDARD 17)
+
 # Add your source files here
 set(SOURCES
     src/main.cpp

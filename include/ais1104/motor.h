@@ -5,22 +5,23 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 
+#include "ais1104/wheel.h"
 #include "ais1104/module.h"
 
+class Wheel;
 
 class Motor : public Module {
 public:
     Motor(
-        const Time time,
         const std::string &name,
         const double voltage,
         const double current,
         const double resistance,
         const double inductance)
-    : Module(time, name), current(current), resistance(resistance), inductance(inductance), voltage(voltage) {
+    : Module(name), voltage(voltage), current(current), resistance(resistance), inductance(inductance) {
     }
 
-    Motor(const Time time, const std::string &name) : Motor(time, name, 0, 0, 0, 0) {}
+    explicit Motor(const std::string &name) : Motor(name, 0, 0, 0, 0) {}
 
     void applyVoltage(const double voltage) {
         this->voltage = voltage;
@@ -30,6 +31,8 @@ public:
 
     double getAngle() const { return angle; };
     double getAngularVelocity() const { return angular_velocity; }
+
+    void attach(Wheel* wheel);
 
 private:
     double voltage;
