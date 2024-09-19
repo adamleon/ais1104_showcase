@@ -20,10 +20,10 @@ private:
      * @brief Constructs a Time object with the specified time difference between updates.    static void Init(double deltaTime);
      * @param deltaTime The time difference between updates in milliseconds.
      *    static Time Instance();
-     * If the Time class has not been initialized, the deltaTime value is set and the totalMiliseconds
+     * If the Time class has not been initialized, the deltaTime value is set and the totalMilliseconds
      * and isInitialized variables are initialized.
      */
-    Time(double deltaTime) {
+    explicit Time(double deltaTime) {
         this->deltaTime = deltaTime;
         this->totalSeconds = -1;
     }
@@ -46,7 +46,7 @@ public:
      * @brief Gets the total number of milliseconds elapsed.
      * @return The total number of milliseconds elapsed.
      */
-    double getMilliseconds() {
+    [[nodiscard]] double getMilliseconds() const {
         return totalSeconds / 1000;
     }
 
@@ -54,14 +54,14 @@ public:
      * @brief Gets the total number of seconds elapsed.
      * @return The total number of seconds elapsed.
      */
-    double getSeconds() {
+    [[nodiscard]] double getSeconds() const {
         return totalSeconds; // number of seconds elapsed.
     }
     /**
      * @brief Gets the total number of minutes elapsed.
      * @return The total number of minutes elapsed.
      */
-    double getMinutes() {
+    [[nodiscard]] double getMinutes() const {
         return totalSeconds / 60;
     }
 
@@ -69,11 +69,11 @@ public:
      * @brief Gets the total number of hours elapsed.
      * @return The total number of hours elapsed.
      */
-    double getHours() {
+    [[nodiscard]] double getHours() const {
         return totalSeconds / 3600;
     }
 
-    double getDeltaTime() {
+    [[nodiscard]] double getDeltaTime() const {
       return deltaTime;
     }
 
@@ -84,8 +84,8 @@ public:
      * The string representation is in the format "hh h mm m ss s ms", where hh represents hours,
      * mm represents minutes, ss represents seconds, and ms represents milliseconds.
      */
-    std::string toString() {
-        std::string result = "";
+    [[nodiscard]] std::string toString() const {
+        std::string result;
         result += std::to_string(getHours()) + "h ";
         result += std::to_string(std::fmod(getMinutes(), 60)) + "m ";
         result += std::to_string(std::fmod(getSeconds(), 60)) + "s ";

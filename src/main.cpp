@@ -9,9 +9,9 @@ int main() {
 
     Time time = Time::Instance();
 
-    std::shared_ptr<Motor> motor = std::make_shared<Motor>("Motor", 5, 0, 1, 0.5);
+    const std::shared_ptr<Motor> motor = std::make_shared<Motor>("Motor", 5, 0, 1, 0.5);
     motor->init();
-    std::shared_ptr<Wheel> wheel = std::make_shared<Wheel>("Wheel", 0.04, 0.03);
+    const std::shared_ptr<Wheel> wheel = std::make_shared<Wheel>("Wheel", 0.04, 0.03);
     wheel->init();
     motor->attach(wheel);
 
