@@ -10,7 +10,7 @@
 
 class Wheel;
 
-class Motor : public Module {
+class Motor : public std::enable_shared_from_this<Motor>, public Module {
 public:
     Motor(
         const std::string &name,
@@ -32,7 +32,7 @@ public:
     double getAngle() const { return angle; };
     double getAngularVelocity() const { return angular_velocity; }
 
-    void attach(Wheel* wheel);
+    void attach(const std::shared_ptr<Wheel>& wheel);
 
 private:
     double voltage;

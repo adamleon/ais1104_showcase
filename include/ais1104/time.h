@@ -15,27 +15,28 @@ class Time {
 private:
     double totalSeconds; /**< The total number of milliseconds elapsed. */
     double deltaTime; /**< The time difference between updates. */
-public:
-    static void Init(double deltaTime);
 
-    static Time Instance();
     /**
-     * @brief Constructs a Time object with the specified time difference between updates.
+     * @brief Constructs a Time object with the specified time difference between updates.    static void Init(double deltaTime);
      * @param deltaTime The time difference between updates in milliseconds.
-     *
+     *    static Time Instance();
      * If the Time class has not been initialized, the deltaTime value is set and the totalMiliseconds
      * and isInitialized variables are initialized.
      */
     Time(double deltaTime) {
         this->deltaTime = deltaTime;
-        this->totalSeconds = 0;
+        this->totalSeconds = -1;
     }
 
-    /**
-     * @brief Updates the total number of milliseconds elapsed.
-     *
-     * This method should be called periodically to update the total number of milliseconds elapsed.
-     * It adds the deltaTime value to the totalMiliseconds variable.
+public:
+
+    static void Time::Init(double deltaTime);
+
+    static Time Time::Instance();
+
+    /** @brief Updates the total number of seconds elapse
+     * This method should be called periodically to update the total number of seconds elapsed.
+     * It adds the deltaTime value to the totalSeconds variable.
      */
     void update() {
         totalSeconds += deltaTime;
@@ -91,6 +92,18 @@ public:
         result += std::to_string(std::fmod(getMilliseconds(),1000)) + "ms";
         return result;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 };
 
 

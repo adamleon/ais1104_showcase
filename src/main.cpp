@@ -5,20 +5,25 @@
 
 
 int main() {
-    Time time(0.1);
+    Time::Init(0.1);
 
-    Motor motor("Motor", 5, 0, 1, 0.5);
-    motor.init();
-    Wheel wheel("Wheel", 0.04, 0.03);
-    wheel.init();
+    Time time = Time::Instance();
+
+    std::shared_ptr<Motor> motor = std::make_shared<Motor>("Motor", 5, 0, 1, 0.5);
+    motor->init();
+    std::shared_ptr<Wheel> wheel = std::make_shared<Wheel>("Wheel", 0.04, 0.03);
+    wheel->init();
+    motor->attach(wheel);
 
     std::cout << "Starting simulator\n";
 
     for (int i = 0; i < 100; i++) {
         for (int j = 0; j < 10; j++) {
-            motor.update();
+            motor->update();
+            wheel->update();
             time.update();
-            std::cout << "Motor velocity: " << wheel.getAngularVelocity() << "\n";
+            std::cout << "Motor velocity: " << motor->getAngularVelocity() << "\n";
+            std::cout << "Travelled Distance: " << wheel->travelledDistance() << "\n";
         }
         std::cout << "Time elapsed: " << time.toString() << "\n";
     }

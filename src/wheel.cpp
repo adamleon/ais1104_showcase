@@ -2,6 +2,8 @@
 // Created by adamk on 18.09.2024.
 //
 
+#include <utility>
+
 #include "ais1104/wheel.h"
 
 void Wheel::update() {
@@ -12,7 +14,7 @@ void Wheel::update() {
     angle += angular_velocity;
 }
 
-void Wheel::setMotor(Motor *motor) {
-    this->motor = motor;
+void Wheel::setMotor(std::shared_ptr<Motor> motor) {
+    this->motor = std::move(motor);
 }
 

@@ -5,6 +5,8 @@
 #ifndef WHEEL_H
 #define WHEEL_H
 
+#include <memory>
+
 #include "ais1104/module.h"
 #include "ais1104/motor.h"
 
@@ -24,7 +26,7 @@ public:
     [[nodiscard]] constexpr double getAngularVelocity() const { return angular_velocity; }
     [[nodiscard]] constexpr  double getVelocity() const { return angular_velocity * getRadius(); }
 
-    void setMotor(Motor* motor);
+    void setMotor(std::shared_ptr<Motor> motor);
 
 private:
     double diameter;
@@ -32,7 +34,7 @@ private:
     double angle{};
     double angular_velocity{};
     double inertia;
-    Motor* motor = nullptr;
+    std::shared_ptr<Motor> motor = nullptr;
 };
 
 #endif //WHEEL_H

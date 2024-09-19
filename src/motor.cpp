@@ -4,7 +4,6 @@
 
 #include "ais1104/motor.h"
 
-#include <iostream>
 #include <ostream>
 
 void Motor::update() {
@@ -18,8 +17,8 @@ void Motor::update() {
     angle += angular_velocity;
 }
 
-void Motor::attach(Wheel* wheel) {
+void Motor::attach(const std::shared_ptr<Wheel>& wheel) {
     if(!wheel) { return; }
     inertia = wheel->getInertia();
-    wheel->setMotor(this);
+    wheel->setMotor(shared_from_this());
 }
